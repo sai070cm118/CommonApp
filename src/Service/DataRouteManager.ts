@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AppData } from './AppData';
 import { ProfileController } from './RouteService/ProfileController';
 
 
@@ -8,9 +7,7 @@ export class DataRouteManager {
 
 
     constructor(
-        private _appData:AppData,
         private _profileController:ProfileController){
-
     }
 
 

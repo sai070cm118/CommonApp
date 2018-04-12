@@ -7,26 +7,25 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HTTP } from '@ionic-native/http';
+import { HttpClientModule  } from '@angular/common/http';
+import { ProxyManager } from '../Service/ProxyManager';
 
 //App configuration
 import { AppConfig } from '../Utilities/AppConfig'
 
 //App Data Manager
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-const config: SocketIoConfig = { 
-  url: AppConfig.AppSocketConnectionURI, 
-  options: {
-    query: {
-      token:AppConfig.getSessionToken() 
-    }
-  } 
-};
-import { SocketManager } from '../Service/SocketManager';
+import { SocketIoModule } from 'ng-socket-io';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { SocketManager } from '../Service/SocketManager';
+import { DataRouteManager } from '../Service/DataRouteManager';
+import { ProfileController } from '../Service/RouteService/ProfileController';
+import { AppData } from '../Service/AppData';
+import { AppSocket } from '../Service/AppSocket';
 
 @NgModule({
   declarations: [
@@ -34,12 +33,14 @@ import { IonicStorageModule } from '@ionic/storage';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
-    SocketIoModule.forRoot(config),
+    SocketIoModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -48,11 +49,21 @@ import { IonicStorageModule } from '@ionic/storage';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AppConfig,
+    DataRouteManager,
+    ProfileController,
+    AppData,
+    AppSocket,
+    SocketManager,
+    HTTP,
+    HttpClientModule,
+    ProxyManager,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

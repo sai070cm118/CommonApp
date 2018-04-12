@@ -1,7 +1,7 @@
 
 
 import { Injectable } from '@angular/core';
-import {IProfile,IUser} from './Models';
+import {IProfile} from './Models';
 
 
 
@@ -14,6 +14,13 @@ export class AppData {
     
     public commonData:any;
 
-    public login:any;
+    public login:any={
+        "User":{
+            "Email":"sai@gmail.com",
+            "Password":"sairam0168"
+        }
+    };
+
+    public token:any;
 
 }

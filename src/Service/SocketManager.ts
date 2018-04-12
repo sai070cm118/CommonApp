@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ng-socket-io';
 import {DataRouteManager} from './DataRouteManager';
+import { AppSocket } from './AppSocket';
 
 
 
 @Injectable()
 export class SocketManager {
   
-  public static appI:any ='Teat';
 
-  constructor(private socket: Socket,private dataRouteManager:DataRouteManager){
+  constructor(private socket: AppSocket,private dataRouteManager:DataRouteManager){
     this.socket.connect();
     this.initializeData();
+
   }
 
   initializeData(){
