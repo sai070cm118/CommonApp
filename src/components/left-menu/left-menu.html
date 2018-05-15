@@ -1,0 +1,32 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img [src]="(_Globals.profile == undefined ? '' : _Globals.profile.ProfilePic)"  onError="this.src='./Content/Images/profile.png';"  class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{_Globals.profile == undefined ? '' :_Globals.profile.ProfileName}}</p>
+          <a (click)='togglesideOnlineStatus($event)' style="line-height:16px;"><i class="fa fa-power-off" style="font-size:16px;" [class.text-success]='_Globals.Profile == undefined ? false : _Globals.Profile.Live' [class.text-danger]='_Globals.Profile == undefined ? true : !_Globals.Profile.Live'></i> Online</a>
+        </div>
+        <div class="info" style="padding-bottom: 0px;padding-left: 0px;position: relative;left: 0px;color:#607D8B;clear: both;margin-top: 55px;clear: both;padding-top: 15px;line-height: 10px;border-top:1px solid;">
+          <p>Paragraph1</p>
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form" id="sidebar-form-search">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <!-- <app-MenuTree [treeItems]='treeItems' (updaateContent)="updaateContents($event)" ></app-MenuTree> -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>

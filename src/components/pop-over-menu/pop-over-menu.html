@@ -1,0 +1,48 @@
+
+<div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+         
+        <li *ngFor="let dropItem of propOverDropdowns; let i=index" class="dropdown messages-menu" [class.open]='expandedPopover == i' (click)='popoverClicked($event,i)'>
+             <a   class="dropdown-toggle" data-toggle="dropdown">
+                <i [class]="dropItem.icon"></i>
+                <span class="label label-success">{{dropItem.body.length}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">{{dropItem.heading}}</li>
+                <li *ngIf="!dropItem.isSmallList"><medium-list [listItems]="dropItem.body"></medium-list></li>
+                <li *ngIf="dropItem.isSmallList"><simple-list [listItems]="dropItem.body"></simple-list></li>
+                <li class="footer"><a >{{dropItem.footer}}</a></li>
+            </ul>
+        </li>
+
+
+        <!-- User Account: style can be found in dropdown.less -->
+        <li *ngIf="_Globals.profile!=undefined" class="dropdown user user-menu"  [class.open]='expandedPopover == 106' (click)='popoverClicked($event,106)'>
+            <a   class="dropdown-toggle" data-toggle="dropdown">
+                <img [src]="(_Globals.profile == undefined ? '' : _Globals.profile.ProfilePic)" onError="this.src='./assets/Content/Images/profile.png';" class="user-image" alt="User Image">
+                <span class="hidden-xs">{{_Globals.profile == undefined ? '' :_Globals.profile.ProfileName}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                    <img [src]="(_Globals.profile == undefined ? '' : _Globals.profile.ProfilePic)"  onError="this.src='./assets/Content/Images/profile.png';" class="img-circle" alt="User Image">
+
+                    <p>
+                        {{_Globals.profile == undefined ? '' :_Globals.profile.ProfileName}}
+                        <small>{{_Globals.profile == undefined ? '' :_Globals.profile.Email}}</small>
+                    </p>
+                </li>
+                
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                <div class="pull-left">
+                    <a   class="btn btn-info btn-flat" (click)='profileView($event)'>Profile</a>
+                </div>
+                <div class="pull-right">
+                    <a   class="btn btn-info btn-flat"   (click)='signOut($event)'>Sign out</a>
+                </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

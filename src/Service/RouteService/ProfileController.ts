@@ -13,4 +13,5 @@ export class ProfileController {
     setProfile(profile:any){
         this._appData.profile=profile;
     }
+
 }

@@ -16,11 +16,14 @@ export class AppData {
 
     public login:any={
         "User":{
-            "Email":"sai@gmail.com",
+            "Email":"sai070cm118@gmail.com",
+            "Mobile":"9553923920",
             "Password":"sairam0168"
-        }
+        },
+        "ProfileName":"MyName"
     };
 
     public token:any;
+
 
 }

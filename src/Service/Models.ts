@@ -1,5 +1,5 @@
 export class IProfile{
-    Id:number;
+    _id:string;
     Email?:string;
     Mobile?:string;
     FirstName?:string;
@@ -11,13 +11,9 @@ export class IProfile{
     IsActive?:boolean;
     Status?:number;
     AccountType?:number;
-
-    User?:IUser;
+    
+    EmailVerification?:string;
+    MobileVerification?:string;
+    
 }
 
-export class IUser{
-    Id:number;
-    Email?:string;
-    Mobile?:string;
-    PasswordHash?:string;
-}

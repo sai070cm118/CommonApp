@@ -21,6 +21,7 @@ export class SocketManager {
   }
 
   send(message){
+    
     this.socket.emit('CtoS',message);
   }
 

@@ -1,18 +1,179 @@
-<!--
-  Generated template for the LoginPage page.
+<div class="login-box login-sidebar">
+    <div class="white-box" *ngIf="_appData!=undefined">
+        <form class="form-horizontal form-material" id="loginform" *ngIf="currentVisibleForm==1">
+            <a href="javascript:void(0)" class="text-center db">
+                <img src="./assets/Content/img/HomeIcon.png" style="width: 100px;margin: auto;" alt="Home">
+                
+               </a>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input name="Email" [(ngModel)]="_appData.login.User.Email" class="form-control" type="text" required="" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input  name="Password" [(ngModel)]="_appData.login.User.Password" class="form-control" type="password" required="" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button (click)="loginEvent($event)" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12">
+                    <p>Don't have an account? <a class="text-primary m-l-5"><b (click)="currentVisibleForm=2">Sign Up</b></a></p>
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12">
+                    <p>Forgot Password? <a class="text-primary m-l-5" ><b (click)="currentVisibleForm=3">Recover</b></a></p>
+                </div>
+            </div>
+        </form>
+        
+        <form class="form-horizontal form-material" id="registrationform"  *ngIf="currentVisibleForm==2">
+            <a href="javascript:void(0)" class="text-center db">
+                <img src="./assets/Content/img/HomeIcon.png" style="width: 100px;margin: auto;" alt="Home">
+            </a>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input name="ProfileName" [(ngModel)]="_appData.login.ProfileName" class="form-control" type="text" required="" placeholder="Profile Name">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input name="Email" [(ngModel)]="_appData.login.User.Email" class="form-control" type="text" required="" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input name="Mobile" [(ngModel)]="_appData.login.User.Mobile" class="form-control" type="text" required="" placeholder="Mobile">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input  name="Password" [(ngModel)]="_appData.login.User.Password" class="form-control" type="password" required="" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button (click)="registerEvent($event)" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Sign Up</button>
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12">
+                    <p>Already have an account? <a class="text-primary m-l-5"><b (click)="currentVisibleForm=1">Login</b></a></p>
+                </div>
+            </div>
+        </form>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+        
+        <form class="form-horizontal form-material" id="registrationform"  *ngIf="currentVisibleForm==3">
+               
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <h3>Recover Password</h3>
+                    <p class="text-muted">Enter your Email/MobileNumber and instructions will be sent to you! </p>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <input name="Email" [readonly]="IsResetTokenSent"  [(ngModel)]="_appData.login.User.Email" class="form-control" type="text" required="" placeholder="Email/MobileNumber">
+                </div>
+            </div>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-  <button ion-button (click)="loginEvent($event)">Login</button>
-</ion-header>
+            <div class="form-group " *ngIf="IsResetTokenSent">
+                <div class="col-xs-12">
+                    <input  name="RecoverHash" class="form-control" type="text" required=""  [(ngModel)]="_appData.login.User.RecoverHash" placeholder="Token/OTP">
+                </div>
+            </div>
+            <div class="form-group " *ngIf="IsResetTokenSent">
+                <div class="col-xs-12">
+                    <input  name="Password" class="form-control" type="password" required=""  [(ngModel)]="_appData.login.User.Password" placeholder="New Password">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20"  *ngIf="!IsResetTokenSent">
+                <div class="col-xs-12">
+                    <button (click)="recover()" class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Recover</button>
+                </div>
+            </div>
+            
+            <div class="form-group text-center m-t-20"  *ngIf="IsResetTokenSent">
+                <div class="col-xs-12">
+                    <button  (click)="reSet()" class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                </div>
+            </div>
+            
+            <div class="form-group m-b-0" *ngIf="IsResetTokenSent">
+                <div class="col-sm-12">
+                    <p>Do not receive Token/OTP? <a class="text-primary m-l-5" ><b  (click)="resend()" >Resend</b></a></p>
+                </div>
+            </div>
+            
+            <div class="form-group m-b-0">
+                <div class="col-sm-12">
+                    <p>Want to login? <a class="text-primary m-l-5" ><b  (click)="currentVisibleForm=1" >Login</b></a></p>
+                </div>
+            </div>
+        </form>
+        
 
+        
+        <form class="form-horizontal form-material" id="registrationform"  *ngIf="currentVisibleForm==4 && _appData.profile!=undefined">
+            <a href="javascript:void(0)" class="text-center db">
+                <img src="./assets/Content/img/HomeIcon.png" style="width: 100px;margin: auto;" alt="Home">
+            </a>
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input readonly name="Email" [(ngModel)]="_appData.profile.Email" class="form-control" type="text" required="" placeholder="Email">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input  name="EmailVerification" class="form-control" type="text" [(ngModel)]="_appData.profile.EmailVerification"  required="" placeholder="Token/OTP">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button (click)="verifyEmail()" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Verify Email</button>
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12">
+                    <p>Do not receive Token/OTP? <a class="text-primary m-l-5" ><b  (click)="resendVerificationToken()" >Resend</b></a></p>
+                </div>
+            </div>
+            
+        </form>
 
-<ion-content padding>
-
-</ion-content>
+        <form class="form-horizontal form-material" id="registrationform"  *ngIf="currentVisibleForm==5 && _appData.profile!=undefined">
+                <a href="javascript:void(0)" class="text-center db">
+                    <img src="./assets/Content/img/HomeIcon.png" style="width: 100px;margin: auto;" alt="Home">
+                </a>
+                <div class="form-group m-t-40">
+                    <div class="col-xs-12">
+                        <input readonly name="Mobile" [(ngModel)]="_appData.profile.Mobile" class="form-control" type="text" required="" placeholder="Mobile">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input  name="MobileVerification"  class="form-control" type="text" [(ngModel)]="_appData.profile.MobileVerification" required="" placeholder="Token/OTP">
+                    </div>
+                </div>
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button (click)="verifyMobile()" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Verify Mobile</button>
+                    </div>
+                </div>
+                <div class="form-group m-b-0">
+                    <div class="col-sm-12">
+                        <p>Do not receive Token/OTP? <a class="text-primary m-l-5" ><b  (click)="resendVerificationOtp()" >Resend</b></a></p>
+                    </div>
+                </div>
+                
+            </form>
+    </div>
+</div>

@@ -1,16 +1,18 @@
-// http://ionicframework.com/docs/theming/
+@import url("../assets/bootstrap/css/bootstrap.min.css"); 
+@import url("../assets/Content/font-awesome.min.css"); 
+@import url("../assets/Content/ionicons.min.css"); 
+@import url("../assets/Content/css/AdminLTE.css"); 
+@import url("../assets/Content/css/skins/_all-skins.css"); 
+@import url("../assets/Content/css/animate.css"); 
+@import url("../assets/Content/css/styles.css"); 
 
+/* @import url("../assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css");  */
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+.scroll-content{
+    margin-top: 50px;
+    margin-bottom:56px;
+}
+.toast-message{
+    text-align: center;
+    padding: 0px!important;
+}

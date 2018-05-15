@@ -1,5 +1,17 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+
+<ion-header>
+    <custom-header (viewProfile)="viewProfiles($event)" [proverItems]='popOver' ></custom-header>
+    
+    <!-- <left-menu [treeItems]='treeItems'></left-menu> -->
+    <!-- <app-header (viewProfile)="viewProfiles($event)" (togglesideMenu)='togglesideMenu($event)' [proverItems]='popOver' ></app-header> -->
+</ion-header>
+
+
+       
+<ion-tabs selectedIndex="0" bac> 
+    <ion-tab [root]="welcomeRoot"  tabIcon="ios-people-outline"></ion-tab>
+    <ion-tab [root]="welcomeRoot"  tabIcon="home"></ion-tab>
+    <ion-tab [root]="welcomeRoot"  tabIcon="ios-pulse-outline"></ion-tab>
 </ion-tabs>
+
+    
